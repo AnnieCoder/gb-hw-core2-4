@@ -52,6 +52,17 @@ public class ChatController implements Initializable {
             return;
         }
 
+        String prefix;
+        int selectedIndex = contacts.getSelectionModel().getSelectedIndex();
+
+        if (selectedIndex == -1) {
+            prefix = "Broadcast";
+        } else {
+            prefix = contacts.getItems().get(selectedIndex);
+        }
+
+        text = String.format("%s: %s", prefix, text);
+
         chatArea.appendText(text + System.lineSeparator());
         inputField.clear();
     }
